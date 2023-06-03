@@ -10,7 +10,7 @@ jobs:
       matrix:
         name: [cmake-swizzin]
         os_id: [debian, ubuntu]
-        os_version_id: [stretch, buster, bullseye, bionic, focal, jammy]
+        os_version_id: [stretch, buster, bullseye, bookworm, bionic, focal, jammy]
         arch: [amd64, armhf, arm64]
         include:
           - arch: amd64
@@ -38,6 +38,8 @@ jobs:
             os_version_id: buster
           - os_id: ubuntu
             os_version_id: bullseye
+          - os_id: ubuntu
+            os_version_id: bookworm
 
     name: ${{ matrix.os_id }}:${{ matrix.os_version_id }} ${{ matrix.name }} ${{ matrix.arch }}
 
@@ -228,6 +230,6 @@ jobs:
           replacesArtifacts: true
           tag: "${{ env.cmake_version }}_${{ env.ninja_version }}"
           name: "cmake ${{ env.cmake_version }} ninja ${{ env.ninja_version }}"
-          body: "cmake and ninja built from github latest release on amd64 arm64 armhf for Debian Stretch Buster Bullseye and Ubuntu Bionic Focal Jammy"
+          body: "cmake and ninja built from github latest release on amd64 arm64 armhf for Debian Stretch Buster Bullseye Bookworm and Ubuntu Bionic Focal Jammy"
           allowUpdates: true
           token: "${{ secrets.GITHUB_TOKEN }}"
